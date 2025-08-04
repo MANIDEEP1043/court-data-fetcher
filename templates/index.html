@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Court Data Fetcher</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop id="bg-video">
+        <source src="../static/court-bg.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Overlay for readability -->
+    <div class="overlay"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h2>Court Data Fetcher</h2>
+        <form method="POST" action="/fetch" class="form-box">
+            <label>Case Type:</label>
+            <input type="text" name="case_type" required>
+            <label>Case Number:</label>
+            <input type="text" name="case_number" required>
+            <label>Filing Year:</label>
+            <input type="text" name="filing_year" required>
+            <button type="submit">Fetch Details</button>
+        </form>
+
+    
+        {% if result is defined and result %}
+    <div class="result-box">
+        <h3>Case Details:</h3>
+        <p><strong>Parties:</strong> {{ result['parties'] }}</p>
+        <p><strong>Dates:</strong> {{ result['dates'] }}</p>
+        <p><strong>PDF Links:</strong>
+            {% for link in result['pdf_links'] %}
+                <a href="{{ link }}" target="_blank">Download</a>
+            {% endfor %}
+        </p>
+    </div>
+{% endif %}
+
+        
+    </div>
+</body>
+</html>
