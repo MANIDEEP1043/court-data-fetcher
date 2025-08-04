@@ -1,0 +1,5 @@
+flask
+sqlalchemy
+playwright
+beautifulsoup4
+requests
